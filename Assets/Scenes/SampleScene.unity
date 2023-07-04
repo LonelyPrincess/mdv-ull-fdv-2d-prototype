@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 361241454}
   - component: {fileID: 361241453}
   - component: {fileID: 361241452}
+  - component: {fileID: 361241455}
   m_Layer: 0
   m_Name: Layer 2
   m_TagString: Untagged
@@ -677,6 +678,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361241450}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &361241455
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361241450}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +785,7 @@ GameObject:
   - component: {fileID: 531634995}
   - component: {fileID: 531634994}
   - component: {fileID: 531634993}
+  - component: {fileID: 531634996}
   m_Layer: 0
   m_Name: Layer 5
   m_TagString: Untagged
@@ -859,6 +872,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531634991}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &531634996
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531634991}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
 --- !u!1 &560308402
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,6 +895,7 @@ GameObject:
   - component: {fileID: 560308406}
   - component: {fileID: 560308405}
   - component: {fileID: 560308404}
+  - component: {fileID: 560308407}
   m_Layer: 0
   m_Name: Layer 3
   m_TagString: Untagged
@@ -957,6 +982,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560308402}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &560308407
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560308402}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
 --- !u!1 &632567283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316699278}
   - component: {fileID: 1316699279}
+  - component: {fileID: 1316699280}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1752,6 +1789,19 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
+--- !u!114 &1316699280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316699277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80459c7f1711ad4fabc5c6b952f5fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.01
 --- !u!1 &1328061867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2319,7 @@ GameObject:
   - component: {fileID: 1865051072}
   - component: {fileID: 1865051071}
   - component: {fileID: 1865051070}
+  - component: {fileID: 1865051073}
   m_Layer: 0
   m_Name: Layer 1
   m_TagString: Untagged
@@ -2355,6 +2406,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865051068}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &1865051073
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865051068}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1960938629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2463,7 @@ GameObject:
   - component: {fileID: 2083992350}
   - component: {fileID: 2083992349}
   - component: {fileID: 2083992348}
+  - component: {fileID: 2083992351}
   m_Layer: 0
   m_Name: Layer 4
   m_TagString: Untagged
@@ -2487,6 +2550,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083992346}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!210 &2083992351
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083992346}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
 --- !u!1 &2144717457
 GameObject:
   m_ObjectHideFlags: 0
