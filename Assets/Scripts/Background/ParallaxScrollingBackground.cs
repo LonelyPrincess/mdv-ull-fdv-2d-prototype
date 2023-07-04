@@ -21,8 +21,6 @@ public class ParallaxScrollingBackground : MonoBehaviour
             SortingGroup sortGroup = layer.gameObject.GetComponent<SortingGroup>();
             float layerSpeed = sortGroup.sortingOrder * speed;
 
-            Debug.Log(layer.gameObject.name + " should move at speed " + layerSpeed);
-
             // Apply texture offset to simulate movement
             layer.material.mainTextureOffset += new Vector2(layerSpeed * Time.deltaTime, 0);
         }
