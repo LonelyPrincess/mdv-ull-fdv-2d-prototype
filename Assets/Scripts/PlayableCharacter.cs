@@ -51,7 +51,7 @@ public class PlayableCharacter : MonoBehaviour
     // Stop jumping when collide with floor
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isJumping && collision.collider.name == "Ground") {
+        if (isJumping && collision.collider.tag == "Surface") {
             Debug.Log("stop jump");
             isJumping = false;
             animator.SetBool("isJumping", false);
