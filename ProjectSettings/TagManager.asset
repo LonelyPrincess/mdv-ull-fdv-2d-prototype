@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Surface
   - Button
+  - Collectible
   layers:
   - Default
   - TransparentFX
