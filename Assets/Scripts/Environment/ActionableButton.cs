@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActionableButton : MonoBehaviour
@@ -12,7 +10,7 @@ public class ActionableButton : MonoBehaviour
     public static event ReleaseButtonEventHandler OnButtonRelease;
 
     // Trigger event when player collides with the button
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter2D (Collider2D collider)
     {
         if (OnButtonPress == null) {
             Debug.LogWarning("No listeners subscribed to button press event!");
@@ -26,7 +24,7 @@ public class ActionableButton : MonoBehaviour
     }
 
     // Trigger event when player stops colliding with button
-    private void OnTriggerExit(Collider collider) {
+    private void OnTriggerExit2D (Collider2D collider) {
         if (OnButtonRelease == null) {
             Debug.LogWarning("No listeners subscribed to button release event!");
             return;
