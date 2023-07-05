@@ -9,6 +9,12 @@ public class ActionableButton : MonoBehaviour
     public delegate void ReleaseButtonEventHandler (ActionableButton button);
     public static event ReleaseButtonEventHandler OnButtonRelease;
 
+    // Validate if the source of the collission is the player or a box the player pushed on top
+    bool isEventSourceValid (Collider2D collider) {
+        GameObject eventSource = collider.gameObject;
+        return eventSource.CompareTag("Player") || eventSource.CompareTag("Box");
+    }
+
     // Trigger event when player collides with the button
     private void OnTriggerEnter2D (Collider2D collider)
     {
@@ -17,8 +23,7 @@ public class ActionableButton : MonoBehaviour
             return;
         }
 
-        GameObject eventSource = collider.gameObject;
-        if (eventSource.CompareTag("Player")) {
+        if (isEventSourceValid(collider)) {
             OnButtonPress(this);
         }
     }
@@ -30,8 +35,7 @@ public class ActionableButton : MonoBehaviour
             return;
         }
 
-        GameObject eventSource = collider.gameObject;
-        if (eventSource.CompareTag("Player")) {
+        if (isEventSourceValid(collider)) {
             OnButtonRelease(this);
         }
     }

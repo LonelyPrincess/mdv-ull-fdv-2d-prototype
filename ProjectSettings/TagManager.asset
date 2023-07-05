@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - Goal
   - Enemy
+  - Box
   layers:
   - Default
   - TransparentFX
