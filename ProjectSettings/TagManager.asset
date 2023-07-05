@@ -10,6 +10,7 @@ TagManager:
   - Goal
   - Enemy
   - Box
+  - Flame
   layers:
   - Default
   - TransparentFX

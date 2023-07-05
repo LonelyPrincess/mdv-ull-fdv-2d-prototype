@@ -25,7 +25,7 @@ public class Flame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("flame should fly");
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.left * 10.0f;
+            rb.velocity = Vector2.left * 2.0f;
         }
     }
 

@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215957994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03983754ae02b948b2b2a2cdac9f2f9, type: 3}
   m_Name: 
@@ -3575,8 +3575,9 @@ GameObject:
   - component: {fileID: 800043283}
   - component: {fileID: 800043287}
   - component: {fileID: 800043286}
-  - component: {fileID: 800043285}
+  - component: {fileID: 800043289}
   - component: {fileID: 800043284}
+  - component: {fileID: 800043288}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Enemy
@@ -3592,7 +3593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800043282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.5, y: -1, z: 0}
+  m_LocalPosition: {x: 50.5, y: -1.1275, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3620,22 +3621,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &800043285
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800043282}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 5.5}
-  m_Direction: 0
 --- !u!95 &800043286
 Animator:
   serializedVersion: 5
@@ -3709,6 +3694,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &800043288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800043282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8c049ecbf324945a2696b782dd8bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &800043289
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800043282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.3, y: 5.19}
+    newSize: {x: 4.16, y: 4.54}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 4.5}
+  m_EdgeRadius: 0
 --- !u!1 &802123081
 GameObject:
   m_ObjectHideFlags: 3
@@ -12192,6 +12215,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5343232947228264071, guid: 7aa4987b06acb424983556ebbc89ed52, type: 3}
       propertyPath: m_Name
+      value: Flame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343232947228264071, guid: 7aa4987b06acb424983556ebbc89ed52, type: 3}
+      propertyPath: m_TagString
       value: Flame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
