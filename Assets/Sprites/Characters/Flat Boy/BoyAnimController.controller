@@ -75,7 +75,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6df8ab5b04ce72145910b1835cea92af, type: 2}
+  m_Motion: {fileID: 7400000, guid: 64c8845a38e29b14290a09cb4a1d3c56, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -101,7 +101,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c5c39595d2513cd45b44aa20327eb766, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5814b08ba873d8747a258a6b033a0223, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -129,7 +129,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 47781ec56b8013e43998a130777bce08, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1a942304bddf7c5418ae2893c9012500, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -141,7 +141,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnimController
+  m_Name: BoyAnimController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isWalking
@@ -185,9 +185,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isJumping
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2511152856029991602}
@@ -282,7 +279,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e1eb43b0f095db94587c613b0d587cba, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4becb7f13caec634aabc58f650a38073, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
