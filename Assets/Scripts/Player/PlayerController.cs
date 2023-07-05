@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private int charactersInGoal = 0;
     private List<PlayableCharacter> playableCharacters;
 
+    public GameObject congratulationsMessage;
+
     // Enables the camera at the specified position and disable the rest
     void SwitchActiveCharacter (int index) {
         if (index < 0 || index >= playableCharacters.Count) {
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (charactersInGoal == playableCharacters.Count) {
             Debug.Log("Everyone is in goal, so game will end now...");
             SwitchActiveCharacter(-1);
+            congratulationsMessage.SetActive(true);
         }
     }
 
