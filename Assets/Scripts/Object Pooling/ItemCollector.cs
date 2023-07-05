@@ -9,8 +9,10 @@ public class ItemCollector : MonoBehaviour
         Item.OnPickUp += OnItemPickUp;
     }
 
-    void OnItemPickUp (Item item) {
-        collectedItemCount += 1;
-        Debug.Log("Collected items: " + collectedItemCount);
+    void OnItemPickUp (Item item, GameObject itemPicker) {
+        if (itemPicker == this.gameObject) {
+            collectedItemCount += 1;
+            Debug.Log("Collected items: " + collectedItemCount);
+        }
     }
 }

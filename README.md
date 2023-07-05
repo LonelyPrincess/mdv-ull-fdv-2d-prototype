@@ -25,4 +25,4 @@
 
 ### :link: Referencias
 
-- [Tarode: 2D Camera in Unity + Confining to bounds](https://www.youtube.com/watch?v=xxshfe3yzqA)
+- [TaroDev: 2D Camera in Unity + Confining to bounds](https://www.youtube.com/watch?v=xxshfe3yzqA)

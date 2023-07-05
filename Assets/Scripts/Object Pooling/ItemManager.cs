@@ -65,7 +65,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // Disable object in pool
-    void DestroyItem (Item item) {
+    void DestroyItem (Item item, GameObject itemPicker) {
         item.gameObject.SetActive(false);
     }
 }
