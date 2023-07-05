@@ -4,13 +4,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private int activeCharIndex = 0;
-    private int charactersInGoal = 0;
     private List<PlayableCharacter> playableCharacters;
 
-    public GameObject congratulationsMessage;
+    public int GetPlayableCharactersCount () {
+        return playableCharacters != null ? playableCharacters.Count : 0;
+    }
 
     // Enables the camera at the specified position and disable the rest
-    void SwitchActiveCharacter (int index) {
+    public void SwitchActiveCharacter (int index) {
         if (index < 0 || index >= playableCharacters.Count) {
             Debug.LogWarning("Specified index does not belong to a character, so everyone will be deactivated");
         } else {
@@ -43,10 +44,6 @@ public class PlayerController : MonoBehaviour
 
         // Enable first character by default
         SwitchActiveCharacter(activeCharIndex);
-
-        // Subscribe to goal events
-        PlayableCharacter.OnGoalEnter += OnCharacterReachedGoal;
-        PlayableCharacter.OnGoalExit += OnCharacterLeftGoal;
     }
 
     // Update is called once per frame
@@ -61,20 +58,5 @@ public class PlayerController : MonoBehaviour
 
             SwitchActiveCharacter(activeCharIndex);
         }
-    }
-
-    void OnCharacterReachedGoal (PlayableCharacter character) {
-        charactersInGoal++;
-
-        // If all characters are already in goal, activate camera pointing to all and end game
-        if (charactersInGoal == playableCharacters.Count) {
-            Debug.Log("Everyone is in goal, so game will end now...");
-            SwitchActiveCharacter(-1);
-            congratulationsMessage.SetActive(true);
-        }
-    }
-
-    void OnCharacterLeftGoal (PlayableCharacter character) {
-        charactersInGoal--;
     }
 }
