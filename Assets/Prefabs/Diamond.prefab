@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8574994079342731424}
   - component: {fileID: 8971028064449389108}
   m_Layer: 0
-  m_Name: Pink Shard
+  m_Name: Diamond
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
