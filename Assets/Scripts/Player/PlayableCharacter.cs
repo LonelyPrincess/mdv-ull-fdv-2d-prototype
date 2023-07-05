@@ -14,9 +14,6 @@ public class PlayableCharacter : MonoBehaviour
     public float speed = 3.0f;
     public float jumpHeight = 3.0f;
 
-    // Flag to identify if user is already at goal
-    public bool isInGoal = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,19 +63,30 @@ public class PlayableCharacter : MonoBehaviour
         }
     }
 
-    // Detect if the character has already reached the goal destination
+    // Custom events to detect if the character has already reached the goal destination
+    public delegate void CharacterReachedGoalEventHandler (PlayableCharacter character);
+    public static event CharacterReachedGoalEventHandler OnGoalEnter;
+
+    public delegate void CharacterLeftGoalEventHandler (PlayableCharacter character);
+    public static event CharacterLeftGoalEventHandler OnGoalExit;
+
     private void OnTriggerEnter2D (Collider2D collider)
     {
         if (collider.gameObject.tag == "Goal") {
             Debug.Log(this.gameObject.name + " arrived to goal!");
-            isInGoal = true;
+            if (OnGoalEnter != null) {
+                OnGoalEnter(this);
+            }
         }
     }
 
     private void OnTriggerExit2D (Collider2D collider)
     {
         if (collider.gameObject.tag == "Goal") {
-            isInGoal = false;
+            Debug.Log(this.gameObject.name + " got far away from goal...");
+            if (OnGoalExit != null) {
+                OnGoalExit(this);
+            }
         }
     }
 
