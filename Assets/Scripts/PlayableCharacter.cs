@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableCharacter : MonoBehaviour
 {
     private Animator animator;
+    public Camera assignedCamera;
 
     bool isJumping;
 
@@ -31,7 +32,6 @@ public class PlayableCharacter : MonoBehaviour
 
         // Trigger walking animation when character is moving
         animator.SetBool("isWalking", moveRight != 0);
-        // Debug.Log("is walking: " + (moveRight != 0));
 
         Vector2 movementDirection = new Vector2(moveRight, 0);
         this.transform.Translate(movementDirection.normalized * speed * Time.deltaTime);
@@ -43,7 +43,6 @@ public class PlayableCharacter : MonoBehaviour
 
             Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
             float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
-            Debug.Log("Start jump with force " + jumpForce);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -52,9 +51,12 @@ public class PlayableCharacter : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isJumping && collision.collider.tag == "Surface") {
-            Debug.Log("stop jump");
             isJumping = false;
             animator.SetBool("isJumping", false);
         }
+    }
+
+    public Camera GetCamera () {
+        return assignedCamera;
     }
 }
