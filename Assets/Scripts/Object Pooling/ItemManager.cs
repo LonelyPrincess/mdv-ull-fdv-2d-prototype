@@ -20,6 +20,10 @@ public class ItemManager : MonoBehaviour
     // Amount of items that have been generated over time
     int generatedItemCount = 0;
 
+    // Maximum amount of items that should be spawned in one go
+    public int maxItemsToSpawn = 5;
+    int currentIterationGeneratedItemCount = 0;
+
     void Start () {
         // Subscribe to pick up events
         Item.OnPickUp += DestroyItem;
@@ -38,14 +42,15 @@ public class ItemManager : MonoBehaviour
 
     void RecalculateRespawnTime () {
         timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
-        Debug.LogWarning("Next respawn will trigger in " + timeToRespawn + " seconds");
     }
 
     // Keep spawning items until pool is full
     void SpawnItems ()
     {
-        while (GenerateItem () != null) {
+        currentIterationGeneratedItemCount = 0;
+        while (GenerateItem () != null && currentIterationGeneratedItemCount < maxItemsToSpawn) {
             generatedItemCount += 1;
+            currentIterationGeneratedItemCount += 1;
         }
     }
 
