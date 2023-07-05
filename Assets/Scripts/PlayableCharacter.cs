@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayableCharacter : MonoBehaviour
 {
+    public bool isActiveCharacter;
+    public CinemachineVirtualCamera assignedCamera;
+
     private Animator animator;
-    public Camera assignedCamera;
 
     bool isJumping;
-
     public float speed = 3.0f;
     public float jumpHeight = 3.0f;
 
@@ -21,6 +23,11 @@ public class PlayableCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Do nothing unless character is currently active
+        if (!isActiveCharacter) {
+            return;
+        }
+
         float moveUp = Input.GetAxis("Vertical");
         float moveRight = Input.GetAxis("Horizontal");
 
@@ -54,9 +61,5 @@ public class PlayableCharacter : MonoBehaviour
             isJumping = false;
             animator.SetBool("isJumping", false);
         }
-    }
-
-    public Camera GetCamera () {
-        return assignedCamera;
     }
 }

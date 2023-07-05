@@ -8,6 +8,7 @@ TagManager:
   - Button
   - Collectible
   - Goal
+  - Enemy
   layers:
   - Default
   - TransparentFX
