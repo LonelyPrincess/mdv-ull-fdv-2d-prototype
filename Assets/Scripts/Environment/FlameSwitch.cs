@@ -1,33 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FlameSwitch : MonoBehaviour
 {
     public GameObject spawnPoint;
     public GameObject flamePrefab;
 
-    // Instantiate a new flame when the player touches the switch
-    void OnTriggerEnter2D (Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player") {
-            Debug.Log("should create flame");
-            GameObject flame = Instantiate(flamePrefab, spawnPoint.transform);
+    public int flamePrice = 5;
+    public TextMeshProUGUI flamePriceText;
+    public GemManager gemManager;
 
-            Rigidbody2D rb = flame.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.left * 2.0f;
-        }
+    void Start () {
+        flamePriceText.SetText(flamePrice.ToString());
     }
 
-    /*void OnTriggerStay2D (Collider2D collider)
-    {
-        Debug.Log(collider.gameObject.tag + " is colliding with switch");
-        if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("should create flame");
-            Flame flame = Instantiate(flamePrefab, spawnPoint.transform);
+    // Spawn a flame that will move left until it hits something
+    void ShootFlame () {
+        GameObject flame = Instantiate(flamePrefab, spawnPoint.transform);
+        Rigidbody2D rb = flame.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.left * 2.0f;
+    }
 
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.left * 2.0f;
+    // Instantiate a new flame when the player touches the switch (if they have enough money)
+    void OnTriggerEnter2D (Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player" && gemManager.GetAvailableGemCount() > flamePrice) {
+            gemManager.ConsumeGems(flamePrice);
+            ShootFlame();
         }
-    }*/
+    }
 }
