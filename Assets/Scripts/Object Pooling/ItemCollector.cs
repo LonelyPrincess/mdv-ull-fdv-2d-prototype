@@ -12,7 +12,7 @@ public class ItemCollector : MonoBehaviour
     void OnItemPickUp (Item item, GameObject itemPicker) {
         if (itemPicker == this.gameObject) {
             collectedItemCount += 1;
-            Debug.Log("Collected items: " + collectedItemCount);
+            Debug.Log(this.gameObject.name + " has collected " + collectedItemCount + " items");
         }
     }
 }
