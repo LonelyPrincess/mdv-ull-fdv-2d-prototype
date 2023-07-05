@@ -1324,7 +1324,7 @@ PrefabInstance:
       objectReference: {fileID: -2143313887, guid: f7acb5efbe6313241b15a0f605df6583, type: 3}
     - target: {fileID: 6471465622785203444, guid: fc6230e8a9829ef48973abc6cf8ee137, type: 3}
       propertyPath: m_Name
-      value: Yellow Button
+      value: Yellow Button (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8778188497877175222, guid: fc6230e8a9829ef48973abc6cf8ee137, type: 3}
       propertyPath: m_RootOrder
@@ -2561,8 +2561,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1908153604}
   - {fileID: 1550363254}
+  - {fileID: 1908153604}
   - {fileID: 1807001458}
   m_Father: {fileID: 1960938630}
   m_RootOrder: 0
@@ -4910,7 +4910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ApplyAfter: 2
-  m_ChannelMask: 2
+  m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 0
   m_UseCameraSpace: 1
@@ -6470,6 +6470,17 @@ Transform:
   m_Father: {fileID: 1328061869}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1021493658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 590677151065623119, guid: fc6230e8a9829ef48973abc6cf8ee137, type: 3}
+  m_PrefabInstance: {fileID: 133383700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abb1691acfe09c4498d88963929f454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136959641
 GameObject:
   m_ObjectHideFlags: 0
@@ -8327,7 +8338,7 @@ PrefabInstance:
       objectReference: {fileID: -2143313887, guid: f7acb5efbe6313241b15a0f605df6583, type: 3}
     - target: {fileID: 6471465622785203444, guid: fc6230e8a9829ef48973abc6cf8ee137, type: 3}
       propertyPath: m_Name
-      value: Yellow Button
+      value: Yellow Button (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8778188497877175222, guid: fc6230e8a9829ef48973abc6cf8ee137, type: 3}
       propertyPath: m_RootOrder
@@ -9356,6 +9367,8 @@ GameObject:
   - component: {fileID: 1550363256}
   - component: {fileID: 1550363255}
   - component: {fileID: 1550363257}
+  - component: {fileID: 1550363258}
+  - component: {fileID: 1550363259}
   m_Layer: 0
   m_Name: Blue Barrier
   m_TagString: Untagged
@@ -9376,7 +9389,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519085094}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1550363255
 BoxCollider2D:
@@ -9477,6 +9490,73 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1550363258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550363253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ae40cd0c9b0148baa034a08745fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsRequiredToUnlock:
+  - {fileID: 1021493658}
+--- !u!114 &1550363259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550363253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 4
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &1611756358
 GameObject:
   m_ObjectHideFlags: 0
@@ -9912,7 +9992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ApplyAfter: 2
-  m_ChannelMask: 4
+  m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 0
   m_UseCameraSpace: 1
