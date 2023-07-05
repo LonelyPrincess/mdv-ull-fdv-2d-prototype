@@ -24,7 +24,7 @@ public class FlameSwitch : MonoBehaviour
     // Instantiate a new flame when the player touches the switch (if they have enough money)
     void OnTriggerEnter2D (Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player" && gemManager.GetAvailableGemCount() > flamePrice) {
+        if (collider.gameObject.tag == "Player" && gemManager.GetAvailableGemCount() >= flamePrice) {
             gemManager.ConsumeGems(flamePrice);
             ShootFlame();
         }
