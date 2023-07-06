@@ -26,15 +26,27 @@ Como podemos ver, las secciones están separadas por una barrera que impide el p
 
 A fin de establecer un mecanismo para la cooperación, ninguno de los personajes tiene posibilidad de abrir estas barreras desde su lado del mapa, ya que los botones se han dispuesto de tal forma que un personaje sólo pueda abrir el camino del otro.
 
-En este caso, podemos ver que la barrera azul del área A1 sólo puede ser abierta desde el botón en el área B1. Del mismo modo, la barrera roja en el área B1 requiere de que se pulse el botón rojo en el área A1. Ocurre lo mismo en las áreas A2 y B2, donde los botones que abren el camino están en el área contraria.
+En este caso, podemos ver que la barrera azul del área A1 sólo puede ser abierta desde el botón en el área B1. Del mismo modo, la barrera naranja en el área B1 requiere de que se pulse el botón correspondiente en el área A1.
+
+![Abriendo la barrera naranja](./Screenshots/opening-red-barrier.gif)
+
+La misma mecánica se aplica a las áreas A2 y B2, donde los botones que abren el camino están en el área contraria.
 
 El caso de la barrera amarilla es algo especial, ya que tenemos dos botones del mismo color. Para superar esta sección, será necesario que los dos sean pulsados de forma simultánea. Resolver este puzzle requerirá el uso de alguna de las cajas en escena para mantener activo uno de los botones mientras que la chica pulsa el otro.
 
+![Activando los botones amarillos](./Screenshots/opening-yellow-barrier.gif)
+
 ### 🔥 Usando el fuego
 
-El botón del área B2 está custodiado por un zombie que impide el paso al jugador.
+El botón verde del área B2 está custodiado por un zombie que impide el paso al jugador. Éste atacará al personaje en caso de acercarse, impulsándolo hacia detrás.
 
-:memo: TODO
+![Zombie impidiendo el paso](./Screenshots/zombie-attack-preview.gif)
+
+La única manera de pasar es eliminar este obstáculo, y para ello juegan un papel las diferentes gemas que pueden recolectar los personajes.
+
+Al inicio de la escena se ha incluido un interruptor que se activará en caso de que la cantidad de gemas en el inventario sea, al menos, 5. Si el personaje se coloca en el área del interruptor cuando dicha condición se cumpla, consumirá 5 de sus gemas y se generará una llama que permitirá acabar con el zombie.
+
+![Usando la llama para liberar el camino](./Screenshots/flame-usage-preview.gif)
 
 ## Detalles de implementación
 
