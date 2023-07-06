@@ -137,9 +137,71 @@ Se ha incluido también un texto en la UI del juego, que será actualizado cada 
 
 ![Contador de gemas en posición](./Screenshots/gem-counter-ui.PNG)
 
-### 🔘 Activación de botones
+### 🔘 Activación de botones y apertura de barreras
 
-:memo: TODO
+Como se ha mencionado anteriormente, el nivel dispone de un conjunto de botones que permitirán al jugador abrir las barreras que le impiden el paso.
+
+Todos estos botones implementan un script denominado `ActionableButton`, que lanzan los eventos personalizados `OnButtonRelease` y `OnButtonPress` cuando alguno de los personajes (o una caja) entra en contacto con él. Para lograr esto, los botones tienen activado el flag _"IsTrigger"_ de su _collider_.
+
+A continuación se expone un extracto del código que detecta si el botón está activo:
+
+```csharp
+// Validate if the source of the collission is the player or a box the player pushed on top
+bool isEventSourceValid (Collider2D collider) {
+    GameObject eventSource = collider.gameObject;
+    return eventSource.CompareTag("Player") || eventSource.CompareTag("Box");
+}
+
+// Trigger event when player collides with the button
+private void OnTriggerEnter2D (Collider2D collider)
+{
+    if (isEventSourceValid(collider)) {
+        OnButtonPress(this);
+    }
+}
+```
+
+La segunda pieza del puzzle son las propias barreras, que implementan un script denominado `UnlockableBarrier`. Este script será el que escuche los eventos generados por los botones, y deberá recibir el listado de botones que deben estar activos para su apertura.
+
+En este ejemplo podemos ver que, para la barrera amarilla, el script recibe como parámetro los dos botones amarillos en escena:
+
+![Configuración de un objeto barrera](./Screenshots/unlockable-barrier-config.PNG)
+
+Dentro de `UnlockableBarrier` se llevará una cuenta de los botones requeridos que están activos en cada momento y, en caso de que se dé la condición de que todos activados, ejecutará un método para abrir la barrera:
+
+```csharp
+void OnButtonPress (ActionableButton button) {
+    if (buttonsRequiredToUnlock.Contains(button)) {
+        UpdateCurrentActiveButtonState(button, 1);
+        Debug.Log(currentlyActiveButtons.Count + " active buttons for " + this.gameObject.name);
+    }
+
+    // Unlock barrier only when all buttons are active at the same time
+    if (currentlyLocked && currentlyActiveButtons.Count == buttonsRequiredToUnlock.Count) {
+        UnlockBarrier();
+    }
+}
+```
+
+A fin de dar algo de _feedback_ al jugador y hacerle entender que algo ha pasado, este es el punto en que se han usado los impulsos de `Cinemachine`. El método `UnlockBarrier`, aparte de eliminar la barrera de la escena para que no impida más el paso al jugador, se provocará un pequeño efecto de temblor en la cámara.
+
+```csharp
+void UnlockBarrier () {
+    Debug.Log("Opening barrier " + this.gameObject.name);
+
+    // Apply visual effect so players know something is happening
+    CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+    impulseSource.GenerateImpulse();
+
+    // Disable barrier so it's no longer visible and characters can move forward
+    this.gameObject.SetActive(false);
+    currentlyLocked = false;
+}
+```
+
+El resultado de la ejecución de este código se puede observar a continuación:
+
+![Efecto de temblor al desbloquear barrera](./Screenshots/barrier-impulse-preview.gif)
 
 ### 🔥 Generación de fuego
 
