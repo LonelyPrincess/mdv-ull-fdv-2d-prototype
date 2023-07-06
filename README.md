@@ -50,6 +50,28 @@ Al inicio de la escena se ha incluido un interruptor que se activará en caso de
 
 ## Detalles de implementación
 
+### 🌄 Diseño del mapa
+
+:memo: TODO
+
+### 🔄 Intercambio de personajes
+
+:memo: TODO
+
+### 💎 Gestión de gemas
+
+:memo: TODO
+
+### 🔘 Activación de botones
+
+:memo: TODO
+
+### 🔥 Generación de fuego
+
+:memo: TODO
+
+### 🚩 Finalización del nivel
+
 :memo: TODO
 
 ## Información adicional del proyecto
