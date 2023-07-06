@@ -81,7 +81,7 @@ Los dos personajes jugables implementan el mismo comportamiento, definido en el 
 
 **Cada personaje cuenta con sus propios sprites, animaciones y un _"Animation Controller"_** para gestionar cuándo mostrar cada una. Así mismo, los dos **harán uso de las físicas** mediante el componente _"RigidBody2D"_, de forma que aspectos como su masa y gravedad afectarán a su capacidad de saltar o a los objetos que puedan empujar. También dispondrán de un _collider_ que nos permitirá gestionar sus colisiones con otros objetos del entorno.
 
-Es importante mencionar también que el proyecto hace uso del _package_ `Cinemachine`, y que **cada uno de los personajes tiene asociada una cámara virtual que lo seguirá** en todo momento.
+Es importante mencionar también que el proyecto hace uso del _package_ `Cinemachine`, y que **cada uno de los personajes tiene asociada una cámara virtual que lo seguirá** en todo momento. Estas cámaras se han configurado con unos límites, de forma que se ajusten a la superficie recorrible por cada personaje (por ejemplo, la cámara de la chica sólo puede moverse entre las áreas A1, A2 y GOAL).
 
 Para la implementación de esta funcionalidad de alternar entre los dos personajes durante el juego, se ha creado un script `PlayerController` que será ejecutado por el objeto `Game Controller` de la escena.
 
@@ -205,7 +205,11 @@ El resultado de la ejecución de este código se puede observar a continuación:
 
 ### 🔥 Generación de fuego
 
-Tal y como se mencionó anteriormente, tenemos un obstáculo en el juego (el zombie) que sólo puede ser derrotado mediante fuego. Para ello, el área B2 incluye un interruptor que permite generar una llama que sale disparada en dirección al zombie.
+Tal y como se mencionó anteriormente, tenemos un obstáculo en el juego (el zombie) que sólo puede ser sorteado mediante el uso del fuego.
+
+Dado que el zombie tiene asociada una masa muy superior a la del personaje, la alternativa de empujarlo para quitarlo de enmedio no funcionará. El zombie ha sido programado de tal forma que lo único que puede derrotarlo es el fuego (véase el script `ZombieController`).
+
+Para hacer esto posible, el área B2 incluye un interruptor que permite generar una llama que sale disparada en dirección al zombie.
 
 Se han incluido **varios elementos de UI** que indican el requisito que el jugador debe de cumplir a fin de poder usar este interruptor. En este caso, cada disparo irá con un coste de 5 gemas.
 
@@ -222,7 +226,7 @@ void ShootFlame () {
 }
 ```
 
-Esta función instanciará una nueva llama encima de la tubería que hay en el área B2, y sobreescribirá la propiedad `velocity` de su componente `RigidBody2D` para lograr que ésta se desplace en línea recta hacia el zombie.
+Esta función instanciará una nueva llama encima de la tubería que hay en el área B2, y sobreescribirá la propiedad `velocity` de su componente `RigidBody2D` cinemático para lograr que ésta se desplace en línea recta hacia el zombie.
 
 ![Uso del interruptor para invocar fuego](./Screenshots/flame-swith-usage.gif)
 
@@ -232,7 +236,48 @@ Destacar también que el _prefab_ `Flame` contiene un script que hace que la lla
 
 ### 🚩 Finalización del nivel
 
-:memo: TODO
+Cuando ambos personajes alcanzan la meta, automáticamente se muestra un mensaje indicando al jugador que ha completado el juego. Para la implementación de este método, han hecho falta varias piezas.
+
+En primer lugar, el script `PlayerCharacter` de los personajes pueden generar los eventos `OnGoalEnter` y `OnGoalExit`. Éstos se lanzarán en cuanto el personaje entra o sale del área marcada como meta, que se ha definido en un objeto vacío llamado `Goal Area` con un _collider_ de tipo _trigger_ y al cual hemos asignado el tag _"Goal"_.
+
+```csharp
+private void OnTriggerEnter2D (Collider2D collider)
+{
+    if (collider.gameObject.tag == "Goal") {
+        Debug.Log(this.gameObject.name + " arrived to goal!");
+        if (OnGoalEnter != null) {
+            OnGoalEnter(this);
+        }
+    }
+}
+```
+
+El objeto `Game Controller` de nuestra escena será el responsable de escuchar estos eventos, a fin de detectar cuando los dos personajes han alcanzado la posición destino. Para ello implementa un script `GoalManager` que lleva un recuento de los personajes que ya han alcanzado la meta, y hace algo cuando han llegado todos:
+
+```csharp
+void OnCharacterReachedGoal (PlayableCharacter character) {
+    charactersInGoal++;
+
+    // If everyone is already in goal, deactivate all characters and show congrats message
+    if (charactersInGoal == playerController.GetPlayableCharactersCount()) {
+        Debug.Log("Everyone is in goal, so game will end now...");
+        playerController.SwitchActiveCharacter(-1);
+        congratulationsMessage.SetActive(true);
+    }
+}
+```
+
+A consecuencia de este código, pasan varias cosas. En primer lugar, todos los personajes se marcan como inactivos. Esto implica que el jugador perderá el control sobre ellos, ya que dejarán de escucharse los eventos de teclados asociados al movimiento del personaje. Además, la cámara virtual asociada a cada uno de ellos quedará deshabilitada.
+
+Hay una tercera cámara virtual de baja prioridad ubicada dentro de la escena y que apunta, específicamente, a la zona de meta. Cuando ocurre que se desactiva la cámara asociada a los personajes a nivel individual, ésta pasa a ser la cámara activa y se puede ver la vista centrada en el área destino.
+
+Por último, se mostrarán en pantalla varios componentes de UI que conforman el mensaje que indica al jugador que ha logrado superado al nivel.
+
+![Mensaje de felicitaciones al acabar el juego](./Screenshots/goal-congrats-message.PNG)
+
+### 〽 Plataforma móvil
+
+:memo: TODO: waypoints!!!!
 
 ## Información adicional del proyecto
 
