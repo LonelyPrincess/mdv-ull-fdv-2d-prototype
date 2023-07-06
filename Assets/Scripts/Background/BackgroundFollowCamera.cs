@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BackgroundFollowCamera : MonoBehaviour
 {
+    private Vector2 initialOffset;
+
     // Camera that will be used to do the background scrolling
     public Camera activeCamera;
 
@@ -14,6 +16,8 @@ public class BackgroundFollowCamera : MonoBehaviour
             Debug.LogWarning("You must specify a camera for this script to work properly!");
             return;
         }
+
+        initialOffset = this.transform.position;
     }
 
     // Update is called once per frame
@@ -24,7 +28,7 @@ public class BackgroundFollowCamera : MonoBehaviour
 
         // Background will constantly follow camera
         if (distance != 0) {
-            this.transform.position = camStart;
+            this.transform.position = camStart + initialOffset;
         }
     }
 }
