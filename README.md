@@ -2,6 +2,8 @@
 
 ## Trabajo final: Desarrollo de un prototipo en 2D
 
+> 📹 _If you're looking for an english description of this project, feel free to check out [this video](https://youtu.be/u76cGIhHPeQ)._
+
 Este proyecto contiene un prototipo de juego 2D que se ha desarrollado aplicando todos los conocimientos adquiridos a lo largo de la asignatura.
 
 En este juego dispondremos de un total de dos personajes jugables, y el objetivo final será reunirlos en la meta. Cada uno de los personajes empieza en un lado diferente del mapa, y será necesaria la cooperación entre ellos para alcanzar el centro y completar el nivel.
