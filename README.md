@@ -108,7 +108,34 @@ En cuanto al cambio de cámara, esto se ha hecho usando el flag `enabled` que pr
 
 ### 💎 Gestión de gemas
 
-:memo: TODO
+Como se describió brevemente en el apartado del diseño del nivel, hay una de las mecánicas que requiere del uso de gemas. Estas son pequeños objetos coleccionables que se van a generar de forma dinámica en zonas aleatorias del nivel.
+
+Para implementar la generación de estos objetos **se ha utilizado la técnica de _object pooling_**. En nuestra escena tendremos un objeto `Object Pool` que implementa un script del mismo nombre, que instanciará varias copias de un prefab determinado (llamado `Diamond`, en este caso) y permitirá su reutilización.
+
+Los objetos `Spawner A` y `Spawner B`, por otro lado, implementarán el script `ItemManager` que hará uso de este pool de objetos para hacer _spawn_ de gemas en una posición aleatoria dentro de un rango específico. En concreto, `Spawner A` generará gemas dentro de las secciones A1 y A2, mientras que `Spawner B` lo hará en las áreas B1 y B2.
+
+Ambas instancias de `ItemManager` compartirán el mismo pool de objetos, e intentarán generar nuevas gemas pasado un intervalo de tiempo para reponerlas en caso de que el jugador ya haya recolectado las anteriores.
+
+En la siguiente imagen podemos ver el aspecto del `Object Pool` durante la ejecución del juego:
+
+![Aspecto del pool de objetos durante ejecución](./Screenshots/object-pool-hierarchy.PNG)
+
+Debido a que el tamaño del pool es 10, nunca será posible tener más en escena de forma simultánea. Las instancias que no están en uso (probablemente por haber sido ya recolectadas) aparecen en gris, y eventualmente serán reemplazadas a solicitud de cualquiera de los `Spawner`.
+
+Para dar visibilidad de los objetos que se han recolectado entre ambos personajes, el objeto `Game Controller` implementa un script `GemManager` que mantiene un recuento de las gemas actualmente en el inventario.
+
+Este script hace uso de **eventos personalizados**, suscribiéndose al evento `Item.OnPickUp` (que está definido en la clase `Item` que implementa el prefab `Diamond`) para saber cuándo debe de aumentar el contador.
+
+```csharp
+void OnGemPickUp (Item item, GameObject itemPicker) {
+    collectedGemCount += 1;
+    RefreshCountInUI();
+}
+```
+
+Se ha incluido también un texto en la UI del juego, que será actualizado cada vez que se recolectan nuevos objetos, tal como se ve en el código anterior.
+
+![Contador de gemas en posición](./Screenshots/gem-counter-ui.PNG)
 
 ### 🔘 Activación de botones
 
