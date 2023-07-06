@@ -54,3 +54,9 @@ El botón del área B2 está custodiado por un zombie que impide el paso al juga
 - [Open Game Art: The Zombie](https://opengameart.org/content/the-zombie-free-sprites)
 - [Kenney: Platformer Art Pixel Redux](https://kenney.nl/assets/platformer-art-pixel-redux)
 - [Free 2D Cartoon Parallax Background](https://assetstore.unity.com/packages/2d/environments/free-2d-cartoon-parallax-background-205812)
+
+### ⚠ Recomendaciones
+
+Para que el juego se muestre correctamente en el modo _"Game"_ de Unity, se recomienda utilizar un _aspect ratio_ de **985 x 495**.
+
+![Configurar aspect ratio personalizado para modo juego](./Screenshots/select-aspect-ratio.PNG)
