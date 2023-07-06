@@ -137,6 +137,20 @@ Se ha incluido también un texto en la UI del juego, que será actualizado cada 
 
 ![Contador de gemas en posición](./Screenshots/gem-counter-ui.PNG)
 
+### 〽 Plataforma móvil
+
+Uno de los elementos del entorno más destacables es la plataforma móvil que hay en el área A2. Ésta **se ha construido utilizando el sistema de _Waypoints_**.
+
+Para esto se han añadido a la escena varios objetos vacíos que identifican los diferentes puntos del circuito, que en este caso es muy sencillo y consta sólo de tres. Se ha añadido también otro objeto vacío guía y que será necesario para que los scripts de `WaypointCircuit` y `WaypointProgressTracer` queden bien configurados.
+
+![Estructura de la plataforma móvil dentro de la escena](./Screenshots/moving-platform-hierarchy.PNG)
+
+Para moverse a lo largo de la ruta, nuestro objeto `Moving Platform` implementa el script `FollowTheGuide` que, como su nombre indica, se encargará de seguir al objeto vacío que creamos antes y que se mueve a lo largo del circuito.
+
+Con esto se logra que la plataforma esté constantemente oscilando entre los tres puntos que hemos definido, tal como se ve en esta imagen:
+
+![Plataforma recorriendo el circuito](./Screenshots/platform-waypoint-circuit.gif)
+
 ### 🔘 Activación de botones y apertura de barreras
 
 Como se ha mencionado anteriormente, el nivel dispone de un conjunto de botones que permitirán al jugador abrir las barreras que le impiden el paso.
@@ -274,10 +288,6 @@ Hay una tercera cámara virtual de baja prioridad ubicada dentro de la escena y 
 Por último, se mostrarán en pantalla varios componentes de UI que conforman el mensaje que indica al jugador que ha logrado superado al nivel.
 
 ![Mensaje de felicitaciones al acabar el juego](./Screenshots/goal-congrats-message.PNG)
-
-### 〽 Plataforma móvil
-
-:memo: TODO: waypoints!!!!
 
 ## Información adicional del proyecto
 
