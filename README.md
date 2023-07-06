@@ -50,9 +50,30 @@ Al inicio de la escena se ha incluido un interruptor que se activará en caso de
 
 ## Detalles de implementación
 
-### 🌄 Diseño del mapa
+### 🌄 Creación del entorno
 
-:memo: TODO
+Para el diseño de la escena se ha generado una _"Tile Palette"_ con los recursos escogidos.
+
+![Vista previa de la _"Tile Palette"_ generada](./Screenshots/tile-palette.PNG)
+
+Ésta se ha utilizado para generar la estructura de las diferentes secciones de la escena en un conjunto de _tilemaps_. **Cada una las secciones dispone de varios _tilemaps_ en distintas capas de profundidad**, de forma que haya elementos que queden por delante de otros. La nomenclatura usada en estos _tilemaps_ es la siguiente:
+
+- `Ground` contiene únicamente las plataformas o zonas sobre las que el personaje puede caminar. Esta capa tendrá siempre asociado un _"Tilemap Collider 2D"_.
+- `Walls` contiene paredes, áreas con las que el jugador podrá colisionar (también incluye un _"Tilemap Collider 2D"_), pero sobre las que no podrá andar.
+- `Decoration (front)` es una capa meramente visual de elementos decorativos que se mostrarán por delante del personaje.
+- `Decoration (back)` es una capa meramente visual de elementos decorativos que se mostrarán a un nivel de profundidad mayor, dando el efecto de estar más atrás del personaje.
+
+Para completar el diseño del entorno, se ha utilizado un **fondo con efecto parallax** compuesto de 4 capas, donde cada una de ellas se moverá a una velocidad diferente. El script `ParallaxScrollingBackground` es el encargado de simular este movimiento dentro del fondo, aplicando un offset a la textura de las diferentes capas en cada iteración.
+
+Además, se ha usado una **técnica de _background scrolling_** para que el fondo sea visible en todo momento teniendo únicamente dos copias del fondo dispuestas lado a lado. Para ello, el script `BackgroundFollowCamera` actualizará en cada frame la posición del fondo para alinearlo con la cámara.
+
+Además de estos elementos estáticos que conforman el entorno, el mapa contendrá un conjunto de elementos con los que el jugador podrá interactuar (`Interactive Objects`), tales como cajas, botones o las mismas barreras. Dado que este tipo de elementos presentará un comportamiento específico, se han añadido a la escena como nuevos objetos, cada uno con sus scripts y configuración correspondiente.
+
+La siguiente captura muestra la jerarquía de objetos que componen el entorno, agrupados por tipo y por la sección del nivel a la que pertenecen.
+
+![Jerarquía de objetos que componen el entorno](./Screenshots/environment-object-hierarchy.PNG)
+
+El objeto `Map Bounds` que se incluye al final de esta lista es un objeto estático que incluye un _collider_ para limitar el área visible del mapa, impidiendo que los personajes se salgan a partes de la escena en que no hay nada.
 
 ### 🔄 Intercambio de personajes
 
