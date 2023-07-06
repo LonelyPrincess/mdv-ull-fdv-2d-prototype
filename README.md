@@ -205,7 +205,30 @@ El resultado de la ejecución de este código se puede observar a continuación:
 
 ### 🔥 Generación de fuego
 
-:memo: TODO
+Tal y como se mencionó anteriormente, tenemos un obstáculo en el juego (el zombie) que sólo puede ser derrotado mediante fuego. Para ello, el área B2 incluye un interruptor que permite generar una llama que sale disparada en dirección al zombie.
+
+Se han incluido **varios elementos de UI** que indican el requisito que el jugador debe de cumplir a fin de poder usar este interruptor. En este caso, cada disparo irá con un coste de 5 gemas.
+
+![Instrucciones de uso del interruptor](./Screenshots/flame-switch-ui.PNG)
+
+La conducta de este interruptor está definida en el script `FlameSwitch`, que ejecutará el siguiente método cuando el personaje si sitúa en una posición en que colisione con el interruptor y disponga de, al menos, 5 gemas en el inventario.
+
+```csharp
+// Spawn a flame that will move left until it hits something
+void ShootFlame () {
+    GameObject flame = Instantiate(flamePrefab, spawnPoint.transform);
+    Rigidbody2D rb = flame.GetComponent<Rigidbody2D>();
+    rb.velocity = Vector2.left * 2.0f;
+}
+```
+
+Esta función instanciará una nueva llama encima de la tubería que hay en el área B2, y sobreescribirá la propiedad `velocity` de su componente `RigidBody2D` para lograr que ésta se desplace en línea recta hacia el zombie.
+
+![Uso del interruptor para invocar fuego](./Screenshots/flame-swith-usage.gif)
+
+Como podemos ver en esta demostración, cada disparo consumirá 5 gemas del inventario compartido entre los personajes.
+
+Destacar también que el _prefab_ `Flame` contiene un script que hace que la llama se autodestruya tan pronto como colisione con algo que no sea una gema. En caso de que el jugador la tocara por error en lo que ésta transita hacia el zombie, será posible usar el interruptor para generar una nueva llama tantas veces como se desee (siempre que se disponga de gemas suficientes, claro).
 
 ### 🚩 Finalización del nivel
 
