@@ -77,7 +77,34 @@ El objeto `Map Bounds` que se incluye al final de esta lista es un objeto estát
 
 ### 🔄 Intercambio de personajes
 
-:memo: TODO
+Los dos personajes jugables implementan el mismo comportamiento, definido en el script `PlayableCharacter`. Éste es bastante sencillo, ya que sus posibles acciones están limitadas a caminar y saltar.
+
+**Cada personaje cuenta con sus propios sprites, animaciones y un _"Animation Controller"_** para gestionar cuándo mostrar cada una. Así mismo, los dos **harán uso de las físicas** mediante el componente _"RigidBody2D"_, de forma que aspectos como su masa y gravedad afectarán a su capacidad de saltar o a los objetos que puedan empujar. También dispondrán de un _collider_ que nos permitirá gestionar sus colisiones con otros objetos del entorno.
+
+Es importante mencionar también que el proyecto hace uso del _package_ `Cinemachine`, y que **cada uno de los personajes tiene asociada una cámara virtual que lo seguirá** en todo momento.
+
+Para la implementación de esta funcionalidad de alternar entre los dos personajes durante el juego, se ha creado un script `PlayerController` que será ejecutado por el objeto `Game Controller` de la escena.
+
+Este script mantiene en su estado interno un listado de todos los personajes en escena (etiquetados con el _tag_ _"Player"_), y usará esto para transitar entre ellos en secuencia cada vez que el jugador pulsa la tecla _"Tab"_.
+
+La parte más importante de esta funcionalidad reside en el método `SwitchActiveCharacter`, del cual se muestra un extracto a continuación:
+
+```csharp
+public void SwitchActiveCharacter (int index) {
+    Debug.Log("Switch to character " + playableCharacters[index].gameObject.name);
+    for (int i = 0; i < playableCharacters.Count; i++) {
+        bool shouldBeActive = i == index;
+        playableCharacters[i].isActiveCharacter = shouldBeActive;
+        playableCharacters[i].assignedCamera.enabled = shouldBeActive;
+    }
+}
+```
+
+Este código viene a hacer dos cosas: habilitar la capacidad de movimiento y la cámara asociada al nuevo personaje activo, y desactivar al resto.
+
+Para lo primero se hace uso del flag `isActiveCharacter` del script `PlayerCharacter`. De estar a `false`, esto hará que no se escuche la entrada del jugador durante el método `Update`. Esto es importante, ya que si sólo modificaramos la cámara activa, el otro personaje se estaría moviendo de la misma forma que el activo, aunque no lo viésemos. Esto implicaría que, al cambiar de nuevo al otro personaje, nos lo encontraríamos en una posición completamente diferente de aquella en donde la dejamos.
+
+En cuanto al cambio de cámara, esto se ha hecho usando el flag `enabled` que proveen las cámaras virtuales para desactivarlas o activarlas según haga falta.
 
 ### 💎 Gestión de gemas
 
